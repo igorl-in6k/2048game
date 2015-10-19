@@ -2,6 +2,7 @@ package game2048.core;
 
 import static game2048.core.Constants.BASIS;
 import static game2048.core.Constants.SIZE;
+import static game2048.core.Direction.UP;
 
 public class GameFieldImpl implements GameField {
 
@@ -57,7 +58,11 @@ public class GameFieldImpl implements GameField {
     }
 
     private int moveUp() {
-        return -1;
+        int currentMoveScore = 0;
+        for (int i = 0; i < SIZE; i++) {
+            currentMoveScore += moveLeft(getColumn(i));
+        }
+        return currentMoveScore;
     }
 
     private int moveRight() {
@@ -142,6 +147,14 @@ public class GameFieldImpl implements GameField {
     @Override
     public int getScore() {
         return 0;
+    }
+
+    private Cell[] getColumn(int idx) {
+        Cell[] column = new Cell[SIZE];
+        for (int i = 0; i < SIZE; i++) {
+            column[i] = cells[i][idx];
+        }
+        return column;
     }
 
     private boolean isPowerOfBasis(int num) {

@@ -110,10 +110,10 @@ public class GameFieldImplTest {
         });
 
         int[][] expected = new int[][]{
-                {2,  0,  0,  2},
-                {0,  0,  0,  0},
-                {0,  0,  4, 32},
-                {0, 32, 16,  4}
+                {0, 0,  0,  2},
+                {0, 0,  0,  0},
+                {0, 0, 32,  4},
+                {0, 4, 16, 32}
         };
         assertThat(0, is(gf.move(RIGHT)));
         assertThat(expected, is(gf.getValues()));
@@ -180,9 +180,9 @@ public class GameFieldImplTest {
 
         int[][] expected = new int[][]{
                 {64, 4, 8, 16},
-                {32, 2, 8, 4},
-                { 0, 0, 0, 0},
-                { 0, 0, 0, 0}
+                {32, 2, 8,  4},
+                { 0, 0, 0,  0},
+                { 0, 0, 0,  0}
         };
         assertThat(104, is(gf.move(UP)));
         assertThat(expected, is(gf.getValues()));
@@ -237,6 +237,4 @@ public class GameFieldImplTest {
         assertThat(104, is(gf.move(DOWN)));
         assertThat(expected, is(gf.getValues()));
     }
-
-
 }
