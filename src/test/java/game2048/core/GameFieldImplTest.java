@@ -1,5 +1,6 @@
 package game2048.core;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static game2048.core.Direction.LEFT;
@@ -13,8 +14,8 @@ public class GameFieldImplTest {
 
     @Test
     public void testConstructors() {
-        GameFieldImpl gf1 = new GameFieldImpl();
-        GameFieldImpl gf2 = new GameFieldImpl(new int[][]{
+        GameField gf1 = getGameFieldForTest();
+        GameField gf2 = getGameFieldForTest(new int[][]{
                 {0,0,0,0},
                 {0,0,0,0},
                 {0,0,0,0},
@@ -33,14 +34,58 @@ public class GameFieldImplTest {
                 {128,   64, 32,   16}
         };
 
-        GameFieldImpl gf = new GameFieldImpl(expected);
+        GameField gf = getGameFieldForTest(expected);
 
         assertThat(expected, is(gf.getValues()));
     }
 
     @Test
+    public void testFillRandomEmptyCell() {
+        GameField gf = getGameFieldForTest(new int[][]{
+                {2, 4, 2, 4},
+                {4, 0, 8, 2},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0}
+        });
+
+        gf.fillRandomEmptyCell();
+
+        int[][] expected = new int[][]{
+                {2, 4, 2, 4},
+                {4, 2, 8, 2},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0}
+        };
+        assertThat(expected, is(gf.getValues()));
+    }
+
+    @Test
+    public void filedShouldHaveAvailableMoveWhenContainsEmptyCell() {
+        GameField gf = getGameFieldForTest(new int[][]{
+                {2, 4, 2, 4},
+                {4, 2, 0, 2},
+                {2, 4, 2, 4},
+                {4, 2, 4, 2}
+        });
+
+        assertThat(true, is(gf.hasAvailableMove()));
+    }
+
+    @Test
+    public void fieldShouldHaveAvailableMoveWhenMergeIsAvailable() {
+        GameField gf = getGameFieldForTest(new int[][]{
+                {2, 4, 2, 4},
+                {4, 4, 4, 2},
+                {2, 4, 2, 4},
+                {4, 2, 4, 2}
+        });
+
+        assertThat(true, is(gf.hasAvailableMove()));
+    }
+
+    @Test
     public void testMoveLeftIsNotAvailable() {
-        GameFieldImpl gf = new GameFieldImpl(new int[][]{
+        GameField gf = getGameFieldForTest(new int[][]{
                 {16, 8, 2, 0},
                 { 0, 0, 0, 0},
                 { 4, 2, 4, 0},
@@ -52,7 +97,7 @@ public class GameFieldImplTest {
 
     @Test
     public void testMoveLeftNoMergeAvailable() {
-        GameFieldImpl gf = new GameFieldImpl(new int[][]{
+        GameField gf = getGameFieldForTest(new int[][]{
                 { 0,  0, 2,  0},
                 { 0,  0, 0,  0},
                 { 0,  0, 4, 32},
@@ -71,7 +116,7 @@ public class GameFieldImplTest {
 
     @Test
     public void testMoveLeftWithMerge() {
-        GameFieldImpl gf = new GameFieldImpl(new int[][]{
+        GameField gf = getGameFieldForTest(new int[][]{
                 { 4,  4, 4,  4},
                 {16,  0, 0, 16},
                 { 2,  0, 2,  0},
@@ -90,7 +135,7 @@ public class GameFieldImplTest {
 
     @Test
     public void testMoveRightIsNotAvailable() {
-        GameFieldImpl gf = new GameFieldImpl(new int[][]{
+        GameField gf = getGameFieldForTest(new int[][]{
                 {0, 2,  8, 16},
                 {0, 0,  0,  0},
                 {0, 4,  2,  4},
@@ -102,7 +147,7 @@ public class GameFieldImplTest {
 
     @Test
     public void testMoveRightNoMergeAvailable() {
-        GameFieldImpl gf = new GameFieldImpl(new int[][]{
+        GameField gf = getGameFieldForTest(new int[][]{
                 { 0, 2,  0,  0},
                 { 0, 0,  0,  0},
                 {32, 4,  0,  0},
@@ -121,7 +166,7 @@ public class GameFieldImplTest {
 
     @Test
     public void testMoveRightWithMerge() {
-        GameFieldImpl gf = new GameFieldImpl(new int[][]{
+        GameField gf = getGameFieldForTest(new int[][]{
                 { 4,  4, 4,  4},
                 {16,  0, 0, 16},
                 { 2,  0, 2,  0},
@@ -140,7 +185,7 @@ public class GameFieldImplTest {
 
     @Test
     public void testMoveUpIsNotAvailable() {
-        GameFieldImpl gf = new GameFieldImpl(new int[][]{
+        GameField gf = getGameFieldForTest(new int[][]{
                 {16, 0,  8, 16},
                 { 4, 0, 16, 64},
                 { 2, 0,  2, 16},
@@ -152,7 +197,7 @@ public class GameFieldImplTest {
 
     @Test
     public void testMoveUpNoMergeAvailable() {
-        GameFieldImpl gf = new GameFieldImpl(new int[][]{
+        GameField gf = getGameFieldForTest(new int[][]{
                 { 0, 2,  0,  2},
                 { 0, 0,  0,  0},
                 {32, 4,  0,  4},
@@ -171,7 +216,7 @@ public class GameFieldImplTest {
 
     @Test
     public void testMoveUpWithMerge() {
-        GameFieldImpl gf = new GameFieldImpl(new int[][]{
+        GameField gf = getGameFieldForTest(new int[][]{
                 {32, 2, 4, 8},
                 {32, 2, 4, 8},
                 {32, 0, 4, 2},
@@ -190,7 +235,7 @@ public class GameFieldImplTest {
 
     @Test
     public void testMoveDownIsNotAvailable() {
-        GameFieldImpl gf = new GameFieldImpl(new int[][]{
+        GameField gf = getGameFieldForTest(new int[][]{
                 { 0, 0,  8, 16},
                 {16, 0, 16, 64},
                 { 4, 0,  2, 16},
@@ -202,7 +247,7 @@ public class GameFieldImplTest {
 
     @Test
     public void testMoveDownNoMergeAvailable() {
-        GameFieldImpl gf = new GameFieldImpl(new int[][]{
+        GameField gf = getGameFieldForTest(new int[][]{
                 { 4, 2, 16, 32},
                 {32, 0,  0,  4},
                 { 0, 4,  0,  0},
@@ -221,7 +266,7 @@ public class GameFieldImplTest {
 
     @Test
     public void testMoveDownWithMerge() {
-        GameFieldImpl gf = new GameFieldImpl(new int[][]{
+        GameField gf = getGameFieldForTest(new int[][]{
                 {32, 2, 4, 8},
                 {32, 2, 4, 8},
                 {32, 0, 4, 2},
@@ -238,5 +283,11 @@ public class GameFieldImplTest {
         assertThat(expected, is(gf.getValues()));
     }
 
+    private GameField getGameFieldForTest(int[][] vals) {
+        return new GameFieldImpl(vals, new FakeSelector(), new FakeFiller());
+    }
 
+    private GameField getGameFieldForTest() {
+        return new GameFieldImpl(new FakeSelector(), new FakeFiller());
+    }
 }

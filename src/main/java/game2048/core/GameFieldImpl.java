@@ -5,16 +5,26 @@ import static game2048.core.Constants.SIZE;
 public class GameFieldImpl implements GameField {
 
     protected Cell[][] cells = new Cell[SIZE][SIZE];
+    private CellSelectionStrategy selector;
+    private CellFillingStrategy filler;
     private int score = 0;
 
     public GameFieldImpl() {
+        this(new RandomEmptyCellSelector(), new CellFiller());
+    }
+
+    public GameFieldImpl(CellSelectionStrategy s, CellFillingStrategy f) {
+        selector = s;
+        filler = f;
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++)
                 cells[i][j] = new Cell();
         }
     }
     
-    public GameFieldImpl(int[][] values) {
+    public GameFieldImpl(int[][] values, CellSelectionStrategy s, CellFillingStrategy f) {
+        selector = s;
+        filler = f;
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
                 int value = values[i][j];
@@ -137,16 +147,36 @@ public class GameFieldImpl implements GameField {
 
     @Override
     public void fillRandomEmptyCell() {
+        filler.fill(selector.getCell(cells));
     }
 
     @Override
     public boolean hasAvailableMove() {
-        return false;
+        return hasEmptyCell() || hasAtLeastOneMerge();
     }
 
     @Override
     public int getScore() {
-        return 0;
+        return score;
+    }
+
+    private boolean hasEmptyCell() {
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++)
+                if ( cells[i][j].isEmpty() )
+                    return true;
+        }
+        return false;
+    }
+
+    private boolean hasAtLeastOneMerge() {
+        for (int i = 0; i < SIZE - 1; i++) {
+            for (int j = 0; j < SIZE - 1; j++)
+                if ( (cells[i][j].equals(cells[i+1][j])) ||
+                        (cells[i][j].equals(cells[i][j+1])) )
+                    return true;
+        }
+        return false;
     }
 
     private Cell[] getColumn(int idx) {

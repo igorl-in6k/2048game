@@ -33,6 +33,13 @@ public class Cell {
         value = cell.getValue();
     }
 
+    public void setValue(int val) {
+        if (val != 0 && !isPowerOfBasis(val))
+            throw new IllegalArgumentException("Cell value (" + val
+                    + ") should be a power of " + BASIS);
+        value = val;
+    }
+
     public boolean merge(Cell cell) {
         if ( !equals(cell) )
             return false;
