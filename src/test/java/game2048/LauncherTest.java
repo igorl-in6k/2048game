@@ -13,6 +13,8 @@ import static org.junit.Assert.*;
 
 public class LauncherTest implements GameField, Input, Output {
 
+
+
     @Override
     public int[][] getValues() {
         return new int[0][];

@@ -50,13 +50,13 @@ public class GameFieldImpl implements GameField {
         int[][] beforeMove = getValues();
         switch (direction) {
             case LEFT:
-                moveLeft(); break;
+                score += moveLeft(); break;
             case RIGHT:
-                moveRight(); break;
+                score += moveRight(); break;
             case UP:
-                moveUp(); break;
+                score += moveUp(); break;
             case DOWN:
-                moveDown(); break;
+                score += moveDown(); break;
         }
         return !equal(beforeMove, getValues());
     }
