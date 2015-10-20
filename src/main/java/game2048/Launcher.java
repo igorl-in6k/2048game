@@ -38,7 +38,7 @@ public class Launcher {
 
         InputOption option;
 
-        boolean gameOver = false; // todo
+        boolean gameOver = false;
         while ( !gameOver ) {
             printer.print(gameField);
             option = reader.getInputOption();
