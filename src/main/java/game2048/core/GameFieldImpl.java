@@ -19,8 +19,6 @@ public class GameFieldImpl implements GameField {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
                 int value = values[i][j];
-                if (value != 0 && !isPowerOfBasis(value))
-                    throw new IllegalArgumentException("Cell value (" + value + ") should be a power of " + BASIS);
                 cells[i][j] = new Cell(value);
             }
         }
@@ -53,11 +51,19 @@ public class GameFieldImpl implements GameField {
     }
 
     private int moveDown() {
-        return -1;
+        int currentMoveScore = 0;
+        for (int i = 0; i < SIZE; i++) {
+            currentMoveScore += moveRight(getColumn(i));
+        }
+        return currentMoveScore;
     }
 
     private int moveUp() {
-        return -1;
+        int currentMoveScore = 0;
+        for (int i = 0; i < SIZE; i++) {
+            currentMoveScore += moveLeft(getColumn(i));
+        }
+        return currentMoveScore;
     }
 
     private int moveRight() {
@@ -88,7 +94,7 @@ public class GameFieldImpl implements GameField {
                 while ( j >= 0 && row[j].isEmpty() )
                     j--;
                 if (j >= 0 ) {
-                    row[i] = new Cell(row[j]);
+                    row[i].setValue(row[j]);
                     row[j].reset();
                 }
             }
@@ -123,7 +129,7 @@ public class GameFieldImpl implements GameField {
                 while (j < SIZE && row[j].isEmpty())
                     j++;
                 if (j < SIZE) {
-                    row[i] = new Cell(row[j]);
+                    row[i].setValue(row[j]);
                     row[j].reset();
                 }
             }
@@ -144,13 +150,11 @@ public class GameFieldImpl implements GameField {
         return 0;
     }
 
-    private boolean isPowerOfBasis(int num) {
-        if ( num <= 1 || num % BASIS != 0 )
-            return false;
-        int pow = BASIS;
-        while ( pow < num ) {
-            pow *= BASIS;
+    private Cell[] getColumn(int idx) {
+        Cell[] column = new Cell[SIZE];
+        for (int i = 0; i < SIZE; i++) {
+            column[i] = cells[i][idx];
         }
-        return pow == num;
+        return column;
     }
 }
