@@ -1,6 +1,5 @@
 package game2048.core;
 
-import static game2048.core.Constants.BASIS;
 import static game2048.core.Constants.SIZE;
 
 public class GameFieldImpl implements GameField {
