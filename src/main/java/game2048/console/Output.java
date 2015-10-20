@@ -6,4 +6,6 @@ public interface Output {
 
     void print(GameField field);
 
+    void printLine(String str);
+
 }

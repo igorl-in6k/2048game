@@ -49,6 +49,7 @@ public class Launcher {
             }
             else return option;
         }
+        printer.printLine("Game Over");
         return EXIT;
     }
 }

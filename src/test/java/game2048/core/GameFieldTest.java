@@ -10,7 +10,7 @@ import static game2048.core.Direction.DOWN;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
-public class GameFieldImplTest {
+public class GameFieldTest {
 
     @Test
     public void testConstructors() {

@@ -1,9 +1,6 @@
 package game2048.console;
 
-import game2048.core.Constants;
-import game2048.core.Direction;
 import game2048.core.GameField;
-import game2048.core.GameFieldImpl;
 
 import java.io.PrintStream;
 import java.util.HashMap;
@@ -16,7 +13,7 @@ public class ConsolePrinter implements Output {
     private static final Map<Integer, ConsoleColor> colors = new HashMap<>();
     
     private PrintStream out;
-
+    // "stty -icanon min 1 time 0"
     public ConsolePrinter(PrintStream out) {
         initializeColors();
         this.out = out;
@@ -35,6 +32,11 @@ public class ConsolePrinter implements Output {
             out.println();
         }
         out.println();
+    }
+
+    @Override
+    public void printLine(String str) {
+        out.println(str);
     }
     
     private void initializeColors() {
