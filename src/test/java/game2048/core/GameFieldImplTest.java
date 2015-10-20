@@ -92,7 +92,7 @@ public class GameFieldImplTest {
                 {32,16, 2, 4}
         });
 
-        assertThat(0, is(gf.move(LEFT)));
+        assertThat(false, is(gf.move(LEFT)));
     }
 
     @Test
@@ -110,7 +110,7 @@ public class GameFieldImplTest {
                 { 4, 32, 0, 0},
                 {32, 16, 4, 0}
         };
-        assertThat(0, is(gf.move(LEFT)));
+        assertThat(true, is(gf.move(LEFT)));
         assertThat(expected, is(gf.getValues()));
     }
 
@@ -129,7 +129,7 @@ public class GameFieldImplTest {
                 { 4,  0, 0,  0},
                 {16,  4, 0,  0}
         };
-        assertThat(52, is(gf.move(LEFT)));
+        assertThat(true, is(gf.move(LEFT)));
         assertThat(expected, is(gf.getValues()));
     }
 
@@ -142,7 +142,7 @@ public class GameFieldImplTest {
                 {4, 2, 16, 32}
         });
 
-        assertThat(0, is(gf.move(RIGHT)));
+        assertThat(false, is(gf.move(RIGHT)));
     }
 
     @Test
@@ -160,7 +160,7 @@ public class GameFieldImplTest {
                 {0,  0, 32,  4},
                 {0,  4, 16, 32}
         };
-        assertThat(0, is(gf.move(RIGHT)));
+        assertThat(true, is(gf.move(RIGHT)));
         assertThat(expected, is(gf.getValues()));
     }
 
@@ -179,7 +179,7 @@ public class GameFieldImplTest {
                 {0, 0,  0,  4},
                 {0, 0, 16, 4}
         };
-        assertThat(52, is(gf.move(RIGHT)));
+        assertThat(true, is(gf.move(RIGHT)));
         assertThat(expected, is(gf.getValues()));
     }
 
@@ -192,7 +192,7 @@ public class GameFieldImplTest {
                 { 0, 0,  4, 64}
         });
 
-        assertThat(0, is(gf.move(UP)));
+        assertThat(false, is(gf.move(UP)));
     }
 
     @Test
@@ -210,7 +210,7 @@ public class GameFieldImplTest {
                 { 0, 0,  0, 32},
                 { 0, 0,  0,  0}
         };
-        assertThat(0, is(gf.move(UP)));
+        assertThat(true, is(gf.move(UP)));
         assertThat(expected, is(gf.getValues()));
     }
 
@@ -229,7 +229,7 @@ public class GameFieldImplTest {
                 { 0, 0, 0, 0},
                 { 0, 0, 0, 0}
         };
-        assertThat(104, is(gf.move(UP)));
+        assertThat(true, is(gf.move(UP)));
         assertThat(expected, is(gf.getValues()));
     }
 
@@ -242,7 +242,7 @@ public class GameFieldImplTest {
                 { 2, 0,  4, 64}
         });
 
-        assertThat(0, is(gf.move(DOWN)));
+        assertThat(false, is(gf.move(DOWN)));
     }
 
     @Test
@@ -260,7 +260,7 @@ public class GameFieldImplTest {
                 { 4, 2,  0,  4},
                 {32, 4, 16,  2}
         };
-        assertThat(0, is(gf.move(DOWN)));
+        assertThat(true, is(gf.move(DOWN)));
         assertThat(expected, is(gf.getValues()));
     }
 
@@ -279,12 +279,12 @@ public class GameFieldImplTest {
                 {32, 2, 8, 16},
                 {64, 4, 8,  4}
         };
-        assertThat(104, is(gf.move(DOWN)));
+        assertThat(true, is(gf.move(DOWN)));
         assertThat(expected, is(gf.getValues()));
     }
 
-    private GameField getGameFieldForTest(int[][] vals) {
-        return new GameFieldImpl(vals, new FakeSelector(), new FakeFiller());
+    private GameField getGameFieldForTest(int[][] values) {
+        return new GameFieldImpl(values, new FakeSelector(), new FakeFiller());
     }
 
     private GameField getGameFieldForTest() {

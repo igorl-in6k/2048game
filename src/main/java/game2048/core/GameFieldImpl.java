@@ -1,5 +1,7 @@
 package game2048.core;
 
+import java.util.Arrays;
+
 import static game2048.core.Constants.SIZE;
 
 public class GameFieldImpl implements GameField {
@@ -44,19 +46,19 @@ public class GameFieldImpl implements GameField {
     }
 
     @Override
-    public int move(Direction direction) {
+    public boolean move(Direction direction) {
+        int[][] beforeMove = getValues();
         switch (direction) {
             case LEFT:
-                return moveLeft();
+                moveLeft(); break;
             case RIGHT:
-                return moveRight();
+                moveRight(); break;
             case UP:
-                return moveUp();
+                moveUp(); break;
             case DOWN:
-                return moveDown();
-            default:
-                return 0;
+                moveDown(); break;
         }
+        return !equal(beforeMove, getValues());
     }
 
     private int moveDown() {
@@ -185,5 +187,15 @@ public class GameFieldImpl implements GameField {
             column[i] = cells[i][idx];
         }
         return column;
+    }
+
+    private boolean equal(int[][] arr1, int[][] arr2) {
+        for (int i = 0; i < arr1.length; i++) {
+            for (int j = 0; j < arr1[i].length; j++) {
+                if ( arr1[i][j] != arr2[i][j] )
+                    return false;
+            }
+        }
+        return true;
     }
 }

@@ -4,7 +4,7 @@ public interface GameField {
 
     int[][] getValues();
 
-    int move(Direction direction);
+    boolean move(Direction direction);
 
     void fillRandomEmptyCell();
 

@@ -15,21 +15,21 @@ public class ConsoleInput implements Input {
 
     @Override
     public InputOption getInputOption() {
-        String input = " ";
-        while ( !"wasdqn".contains(input) )
-            input = sc.nextLine();
+        char input = '~';
+        while ( !"wasdqn".contains(input + "") )
+            input = sc.next().charAt(0);
         switch (input) {
-            case "w":
+            case 'w':
                 return InputOption.MOVE_UP;
-            case "a":
+            case 'a':
                 return InputOption.MOVE_LEFT;
-            case "s":
+            case 's':
                 return InputOption.MOVE_DOWN;
-            case "d":
+            case 'd':
                 return InputOption.MOVE_RIGHT;
-            case "n":
+            case 'n':
                 return InputOption.NEW_GAME;
-            case "q":
+            case 'q':
                 return InputOption.EXIT;
         }
         throw new RuntimeException("trouble with input");
