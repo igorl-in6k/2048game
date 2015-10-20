@@ -1,6 +1,5 @@
 package game2048.core;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import static game2048.core.Direction.LEFT;

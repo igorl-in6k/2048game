@@ -80,4 +80,9 @@ public class LauncherTest implements GameField, Input, Output {
     public void print(GameField field) {
 
     }
+
+    @Override
+    public void printLine(String str) {
+
+    }
 }
