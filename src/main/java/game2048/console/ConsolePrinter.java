@@ -14,6 +14,10 @@ public class ConsolePrinter implements Output {
     
     private PrintStream out;
     // "stty -icanon min 1 time 0"
+    public ConsolePrinter() {
+        this(System.out);
+    }
+
     public ConsolePrinter(PrintStream out) {
         initializeColors();
         this.out = out;

@@ -19,12 +19,6 @@ public class GameController {
         printer = out;
     }
 
-    public GameController() {
-        this(new GameFieldImpl(),
-                new ConsoleInput(System.in),
-                new ConsolePrinter(System.out));
-    }
-
     public void runApp() {
         InputOption option = NEW_GAME;
         while ( option == NEW_GAME ) {

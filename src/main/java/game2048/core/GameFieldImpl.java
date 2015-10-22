@@ -1,7 +1,5 @@
 package game2048.core;
 
-import java.util.Arrays;
-
 import static game2048.core.Constants.SIZE;
 
 public class GameFieldImpl implements GameField {

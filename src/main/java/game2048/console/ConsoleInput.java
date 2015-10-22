@@ -9,6 +9,10 @@ public class ConsoleInput implements Input {
     private InputStream in;
     private Scanner sc;
 
+    public ConsoleInput() {
+        this(System.in);
+    }
+
     public ConsoleInput(InputStream is) {
         in = is;
         sc = new Scanner(in);
