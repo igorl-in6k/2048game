@@ -7,19 +7,19 @@ import game2048.core.GameFieldImpl;
 import static game2048.console.InputOption.EXIT;
 import static game2048.console.InputOption.NEW_GAME;
 
-public class Launcher {
+public class GameController {
 
     private GameField gameField;
     private Input reader;
     private Output printer;
 
-    public Launcher(GameField gf, Input in, Output out) {
+    public GameController(GameField gf, Input in, Output out) {
         gameField = gf;
         reader = in;
         printer = out;
     }
 
-    public Launcher() {
+    public GameController() {
         this(new GameFieldImpl(),
                 new ConsoleInput(System.in),
                 new ConsolePrinter(System.out));

@@ -26,7 +26,7 @@ public class LauncherTest implements GameField, Input, Output {
 
     @Test
     public void testGameAbortedAfterFewMoves() {
-        Launcher launcher = new Launcher(this, this, this);
+        GameController launcher = new GameController(this, this, this);
         options = new InputOption[]{MOVE_LEFT, MOVE_UP, EXIT};
         i = 0;
 
@@ -37,7 +37,7 @@ public class LauncherTest implements GameField, Input, Output {
 
     @Test
     public void testStartedNewGameAfterFewMoves() {
-        Launcher launcher = new Launcher(this, this, this);
+        GameController launcher = new GameController(this, this, this);
         options = new InputOption[]{MOVE_LEFT, MOVE_UP, NEW_GAME};
         i = 0;
 

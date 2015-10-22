@@ -1,8 +1,16 @@
 package game2048;
 
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 public class Main {
 
     public static void main(String[] args) {
-        new Launcher().runApp();
+        ApplicationContext context = new ClassPathXmlApplicationContext(
+                "XMLApplicationContext.xml");
+
+        GameController gc = (GameController) context.getBean("gameController");
+        gc.runApp();
     }
 }
