@@ -1,4 +1,4 @@
-package game2048;
+package game2048.console.run;
 
 import game2048.console.Input;
 import game2048.console.InputOption;
