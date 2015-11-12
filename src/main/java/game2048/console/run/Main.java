@@ -8,7 +8,7 @@ public class Main {
 
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext(
-                "XMLApplicationContext.xml");
+                "applicationContext.xml");
 
         GameController gc = (GameController) context.getBean("gameController");
         gc.runApp();
