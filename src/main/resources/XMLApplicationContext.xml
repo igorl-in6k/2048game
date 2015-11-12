@@ -3,7 +3,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-    <bean id="gameController" class="game2048.GameController">
+    <bean id="gameController" class="game2048.console.run.GameController">
         <constructor-arg ref="gameField" />
         <constructor-arg ref="input" />
         <constructor-arg ref="output" />

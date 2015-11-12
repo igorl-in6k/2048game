@@ -1,8 +1,7 @@
-package game2048;
+package game2048.console.run;
 
 import game2048.console.*;
 import game2048.core.GameField;
-import game2048.core.GameFieldImpl;
 
 import static game2048.console.InputOption.EXIT;
 import static game2048.console.InputOption.NEW_GAME;

@@ -7,6 +7,7 @@ import game2048.console.Output;
 import game2048.core.Direction;
 import game2048.core.GameField;
 import game2048.core.GameFieldImpl;
+import game2048.console.run.GameController;
 import org.junit.Before;
 import org.junit.Test;
 
