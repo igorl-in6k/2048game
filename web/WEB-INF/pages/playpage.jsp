@@ -1,3 +1,4 @@
+<%@ page import="game2048.core.GameField" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -26,15 +27,21 @@
               url: "/game",
               data : data,
               type : "POST",
-
-              error : function(xhr, status, error) {
-                  alert(xhr.responseText);
-              }
           });
       });
   </script>
 </head>
 <body>
-<h1> <%=request.getAttribute("direction")%> </h1>
+<%GameField gameField = (GameField) session.getAttribute("gameField");%>
+<table align="center" width="30%">
+<%
+    for (int[] ints : gameField.getValues()) {%>
+        <tr>
+        <%for (int anInt : ints) {%>
+            <td style="font-size: 25px;"><%=anInt%></td>
+        <%}%>
+        </tr>
+    <%}%>
+</table>
 </body>
 </html>
