@@ -1,18 +1,47 @@
+body {
+    color: #776e65;
+}
+
 #gamefield {
     position: absolute;
+    background: #bbada0;
+    padding: 10px;
+    border-radius: 6px;
 }
 
 .row {
 }
 
 .cell {
-    font-size: 42px;
+    font-size: 55px;
+    font-weight: bold;
+    border-radius: 3px;
+    background: #eee4da;
     margin: 5px;
     float: left;
     width: 110px;
     height: 110px;
     text-align: center;
     line-height: 110px;
+}
+
+#score {
+}
+
+#newgameform {
+    position: relative;
+    top: 500px;
+}
+
+#newgamebutton {
+    padding: 20px;
+    background-color: #776e65;
+    color: coral;
+    font-size: 20px;
+}
+
+#newgamebutton:hover {
+    background-color: #bbada0;
 }
 
 #val0 {
@@ -47,26 +76,32 @@
     background: #f65e3b;
 }
 
-#val128 {  lor: #f9f6f2;
+#val128 {
+    color: #f9f6f2;
     background: #edcf72;
+    font-size: 45px;
 }
 
 #val256 {
     color: #f9f6f2;
     background: #edcc61;
+    font-size: 45px;
 }
 
 #val512 {
     color: #f9f6f2;
     background: #edc850;
+    font-size: 45px;
 }
 
 #val1024 {
     color: #f9f6f2;
     background: #edc53f;
+    font-size: 35px;
 }
 
 #val2048 {
     color: #f9f6f2;
     background: #edc22e;
+    font-size: 35px;
 }

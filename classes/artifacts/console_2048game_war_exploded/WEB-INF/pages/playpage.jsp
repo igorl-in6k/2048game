@@ -23,7 +23,7 @@
               default: direction = "no_direction";
           }
           $.ajax({
-              url: "/game",
+              url: "/",
               data : "direction=" + direction,
               type : "POST",
               async: true,
@@ -33,12 +33,16 @@
                       document.getElementsByClassName("cell")[i].innerHTML = values[i] == 0 ? "" : values[i];
                       document.getElementsByClassName("cell")[i].setAttribute("id", "val" + values[i]);
                   }
+                  document.getElementById("score").innerHTML = "Score: " + values[16];
               }
           });
       });
   </script>
 </head>
 <body>
+<div id="gamefield-header">
+    <h1 id="score"></h1>
+</div>
 <div id="gamefield">
     <div class="row">
         <div class="cell">
@@ -81,5 +85,8 @@
         </div>
     </div>
 </div>
+<form method="post" action="/newgame" id="newgameform">
+    <input type="submit" value="new game" id="newgamebutton">
+</form>
 </body>
 </html>

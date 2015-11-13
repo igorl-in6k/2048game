@@ -16,29 +16,31 @@ public class PlayProcessController {
 
     private GameField gameField;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String getMainPage() {
-        return "main";
-    }
-
-    @RequestMapping(value = "/game", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getGamePage(@ModelAttribute("gameField") GameField gameField, ModelMap model) {
         model.addAttribute("gameField", gameField);
+        startNewGame();
         return "playpage";
     }
 
-    @RequestMapping(value = "/game", method = RequestMethod.POST)
+    @RequestMapping(value = "/", method = RequestMethod.POST)
     public @ResponseBody String  makeMove(@RequestParam("direction") String direction) {
-        gameField.move(Direction.getDirection(direction));
-        gameField.fillRandomEmptyCell();
+        if ( gameField.move(Direction.getDirection(direction)) )
+            gameField.fillRandomEmptyCell();
         String field = "";
         for (int[] ints : gameField.getValues()) {
             for (int anInt : ints) {
                 field += anInt + ",";
             }
         }
-        field = field.substring(0, field.length() - 1);
+        field += gameField.getScore();
         return field;
+    }
+
+    @RequestMapping(value = "/newgame", method = RequestMethod.POST)
+    public String startNewGame() {
+        createGameField();
+        return "redirect:/";
     }
 
     @ModelAttribute("gameField")
