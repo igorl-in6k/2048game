@@ -86,7 +86,7 @@
     </div>
 </div>
 <form method="post" action="/newgame" id="newgameform">
-    <input type="submit" value="new game" id="newgamebutton">
+    <input type="submit" value="New Game" id="newgamebutton">
 </form>
 </body>
 </html>
