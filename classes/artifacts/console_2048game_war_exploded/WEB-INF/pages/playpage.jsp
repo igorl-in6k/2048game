@@ -1,9 +1,9 @@
-<%@ page import="game2048.core.GameField" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>play</title>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/resources/css/style.css" type="text/css" />
   <script>
       jQuery(document).bind('keydown', function (evt){
           var direction;
@@ -22,26 +22,64 @@
                   break;
               default: direction = "no_direction";
           }
-          var data = 'direction=' + direction;
           $.ajax({
               url: "/game",
-              data : data,
+              data : "direction=" + direction,
               type : "POST",
+              async: true,
+              success : function(response) {
+                  var values = response.split(",");
+                  for (var i = 0; i < 16; i++) {
+                      document.getElementsByClassName("cell")[i].innerHTML = values[i] == 0 ? "" : values[i];
+                      document.getElementsByClassName("cell")[i].setAttribute("id", "val" + values[i]);
+                  }
+              }
           });
       });
   </script>
 </head>
 <body>
-<%GameField gameField = (GameField) session.getAttribute("gameField");%>
-<table align="center" width="30%">
-<%
-    for (int[] ints : gameField.getValues()) {%>
-        <tr>
-        <%for (int anInt : ints) {%>
-            <td style="font-size: 25px;"><%=anInt%></td>
-        <%}%>
-        </tr>
-    <%}%>
-</table>
+<div id="gamefield">
+    <div class="row">
+        <div class="cell">
+        </div>
+        <div class="cell">
+        </div>
+        <div class="cell">
+        </div>
+        <div class="cell">
+        </div>
+    </div>
+    <div class="row">
+        <div class="cell">
+        </div>
+        <div class="cell">
+        </div>
+        <div class="cell">
+        </div>
+        <div class="cell">
+        </div>
+    </div>
+    <div class="row">
+        <div class="cell">
+        </div>
+        <div class="cell" >
+        </div>
+        <div class="cell" >
+        </div>
+        <div class="cell" >
+        </div>
+    </div>
+    <div class="row">
+        <div class="cell" >
+        </div>
+        <div class="cell" >
+        </div>
+        <div class="cell" >
+        </div>
+        <div class="cell" >
+        </div>
+    </div>
+</div>
 </body>
 </html>

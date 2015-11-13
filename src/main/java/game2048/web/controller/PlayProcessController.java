@@ -3,12 +3,14 @@ package game2048.web.controller;
 import game2048.core.Direction;
 import game2048.core.GameField;
 import game2048.core.GameFieldImpl;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 @SessionAttributes(value = "gameField")
+@Scope("session")
 @RequestMapping(value = "/")
 public class PlayProcessController {
 
@@ -26,10 +28,17 @@ public class PlayProcessController {
     }
 
     @RequestMapping(value = "/game", method = RequestMethod.POST)
-    public String makeMove(@RequestParam("direction") String direction) {
+    public @ResponseBody String  makeMove(@RequestParam("direction") String direction) {
         gameField.move(Direction.getDirection(direction));
         gameField.fillRandomEmptyCell();
-        return "redirect:/game";
+        String field = "";
+        for (int[] ints : gameField.getValues()) {
+            for (int anInt : ints) {
+                field += anInt + ",";
+            }
+        }
+        field = field.substring(0, field.length() - 1);
+        return field;
     }
 
     @ModelAttribute("gameField")
@@ -40,5 +49,4 @@ public class PlayProcessController {
         this.gameField = gameField;
         return gameField;
     }
-
 }

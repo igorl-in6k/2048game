@@ -1,0 +1,72 @@
+#gamefield {
+    position: absolute;
+}
+
+.row {
+}
+
+.cell {
+    font-size: 42px;
+    margin: 5px;
+    float: left;
+    width: 110px;
+    height: 110px;
+    text-align: center;
+    line-height: 110px;
+}
+
+#val0 {
+    background: rgba(238, 228, 218, 0.35);;
+}
+
+#val2 {
+    background: #eee4da;
+}
+
+#val4 {
+    background: #ede0c8;
+}
+
+#val8 {
+    color: #f9f6f2;
+    background: #f2b179;
+}
+
+#val16 {
+    color: #f9f6f2;
+    background: #f59563;
+}
+
+#val32 {
+    color: #f9f6f2;
+    background: #f67c5f;
+}
+
+#val64 {
+    color: #f9f6f2;
+    background: #f65e3b;
+}
+
+#val128 {  lor: #f9f6f2;
+    background: #edcf72;
+}
+
+#val256 {
+    color: #f9f6f2;
+    background: #edcc61;
+}
+
+#val512 {
+    color: #f9f6f2;
+    background: #edc850;
+}
+
+#val1024 {
+    color: #f9f6f2;
+    background: #edc53f;
+}
+
+#val2048 {
+    color: #f9f6f2;
+    background: #edc22e;
+}
