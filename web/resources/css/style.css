@@ -2,10 +2,15 @@ body {
     color: #776e65;
 }
 
+.container {
+    margin: 0 auto 0 auto;
+    width: 500px;
+}
+
 #gamefield {
     position: absolute;
     background: #bbada0;
-    padding: 10px;
+    padding: 20px;
     border-radius: 6px;
 }
 
@@ -30,12 +35,12 @@ body {
 
 #newgameform {
     position: relative;
-    top: 500px;
+    top: 540px;
 }
 
 #newgamebutton {
     padding: 10px;
-    margin: 10px;
+    margin: 5px;
     border: none;
     border-radius: 3px;
     background-color: #776e65;
