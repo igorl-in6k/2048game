@@ -6,9 +6,9 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <link rel="stylesheet" href="/resources/css/style.css" type="text/css"/>
     <script>
-        jQuery(document).bind('keydown', function (evt) {
+        document.addEventListener('keydown', function(event){
             var direction;
-            switch (evt.which) {
+            switch (event.which) {
                 case 37:
                     direction = "left";
                     break;

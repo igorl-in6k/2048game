@@ -17,7 +17,7 @@ public class PlayProcessController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String getGamePage(@ModelAttribute("gameField") GameField gameField) {
-        return "playpage";
+        return "/gamepage";
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -25,9 +25,9 @@ public class PlayProcessController {
         if ( gameField.move(Direction.getDirection(direction)) )
             gameField.fillRandomEmptyCell();
         String field = "";
-        for (int[] ints : gameField.getValues()) {
-            for (int anInt : ints) {
-                field += anInt + ",";
+        for (int[] row : gameField.getValues()) {
+            for (int rowEl : row) {
+                field += rowEl + ",";
             }
         }
         field += gameField.getScore();
