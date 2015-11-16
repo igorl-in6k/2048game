@@ -1,97 +1,43 @@
+<%@ page import="game2048.core.GameField" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
-    <title>play</title>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="/resources/css/style.css" type="text/css"/>
-    <script>
-        document.addEventListener('keydown', function(event){
-            var direction;
-            switch (event.which) {
-                case 37:
-                    direction = "left";
-                    break;
-                case 38:
-                    direction = "up";
-                    break;
-                case 39:
-                    direction = "right";
-                    break;
-                case 40:
-                    direction = "down";
-                    break;
-                default:
-                    direction = "no_direction";
-            }
-            $.ajax({
-                url: "/",
-                data: "direction=" + direction,
-                type: "POST",
-                async: true,
-                success: function (response) {
-                    var values = response.split(",");
-                    for (var i = 0; i < 16; i++) {
-                        document.getElementsByClassName("cell")[i].innerHTML = values[i] == 0 ? "" : values[i];
-                        document.getElementsByClassName("cell")[i].setAttribute("id", "val" + values[i]);
-                    }
-                    document.getElementById("score").innerHTML = "Score: " + values[16];
-                }
-            });
-        });
-    </script>
+  <title>play</title>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="/resources/css/style.css" type="text/css"/>
+  <script src="/resources/js/script.js"></script>
 </head>
 <body>
+<%GameField gf = (GameField) request.getAttribute("gameField");%>
 <div class="container">
-    <div id="gamefield-header">
-        <h2 id="score"></h2>
+  <div id="gamefield-header">
+    <h2 id="score">
+      <%if (gf.hasAvailableMove()){%>
+        Score: <%=gf.getScore()%>
 
-        <div id="gamefield">
-            <div class="row">
-                <div class="cell">
-                </div>
-                <div class="cell">
-                </div>
-                <div class="cell">
-                </div>
-                <div class="cell">
-                </div>
-            </div>
-            <div class="row">
-                <div class="cell">
-                </div>
-                <div class="cell">
-                </div>
-                <div class="cell">
-                </div>
-                <div class="cell">
-                </div>
-            </div>
-            <div class="row">
-                <div class="cell">
-                </div>
-                <div class="cell">
-                </div>
-                <div class="cell">
-                </div>
-                <div class="cell">
-                </div>
-            </div>
-            <div class="row">
-                <div class="cell">
-                </div>
-                <div class="cell">
-                </div>
-                <div class="cell">
-                </div>
-                <div class="cell">
-                </div>
-            </div>
+      <%}
+      else{%>
+        Game over. Your score is <%=gf.getScore()%>
+      <%}%>
+
+
+    </h2>
+  </div>
+  <div id="gamefield">
+      <%for (int i = 0; i < 4; i++) {%>
+      <div class="row">
+        <%for (int j = 0; j < 4; j++) {%>
+        <div class="cell" id="val<%=gf.getValues()[i][j]%>">
+        <%=gf.getValues()[i][j] == 0 ? "" : gf.getValues()[i][j]%>
         </div>
-    </div>
-    <form method="post" action="/newgame" id="newgameform">
-        <input type="submit" value="New Game" id="newgamebutton">
-    </form>
+        <%}%>
+      </div>
+      <%}%>
+  </div>
+  <form method="post" action="/newgame" id="newgameform">
+    <input type="submit" value="New Game" id="newgamebutton">
+  </form>
 </div>
 
 </body>

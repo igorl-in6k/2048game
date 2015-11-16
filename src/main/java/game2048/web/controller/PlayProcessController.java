@@ -5,6 +5,7 @@ import game2048.core.GameField;
 import game2048.core.GameFieldImpl;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -16,7 +17,8 @@ public class PlayProcessController {
     private GameField gameField;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String getGamePage(@ModelAttribute("gameField") GameField gameField) {
+    public String getGamePage(ModelMap model) {
+        model.addAttribute("gameField", gameField);
         return "/gamepage";
     }
 
@@ -30,7 +32,8 @@ public class PlayProcessController {
                 field += rowEl + ",";
             }
         }
-        field += gameField.getScore();
+        field += gameField.getScore() + ",";
+        field += gameField.hasAvailableMove();
         return field;
     }
 
