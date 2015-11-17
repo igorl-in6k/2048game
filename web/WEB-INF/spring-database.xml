@@ -44,6 +44,15 @@
         <property name="userDao" ref="userDao" />
     </bean>
 
+    <bean id="gameField" class="game2048.core.GameFieldImpl" scope="session">
+        <constructor-arg ref="randomEmptyCellSelector" />
+        <constructor-arg ref="cellFiller" />
+        <aop:scoped-proxy/>
+    </bean>
+
+    <bean id="randomEmptyCellSelector" class="game2048.core.RandomEmptyCellSelector" />
+    <bean id="cellFiller" class="game2048.core.CellFiller" />
+
     <bean id="transactionManager"
           class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>

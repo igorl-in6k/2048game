@@ -16,9 +16,15 @@ document.addEventListener('keydown', function(event){
         default:
             direction = "no_direction";
     }
+    var headers = {};
+    var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+    var csrfToken = $("meta[name='_csrf']").attr("content");
+    headers[csrfHeader] = csrfToken;
+
     $.ajax({
         url: "/game",
         data: "direction=" + direction,
+        headers: headers,
         type: "POST",
         async: true,
         success: function (response) {
