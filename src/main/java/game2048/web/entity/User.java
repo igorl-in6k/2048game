@@ -2,8 +2,16 @@ package game2048.web.entity;
 
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-public class User{
+@Entity
+@Table(name = "users")
+public class User {
 
     private String username;
     private String password;
@@ -19,19 +27,16 @@ public class User{
         this.enabled = enabled;
     }
 
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
-        enabled = true;
-    }
-
-    public User(String username, String password, boolean enabled, Set<UserRole> userRole) {
+    public User(String username, String password,
+                boolean enabled, Set<UserRole> userRole) {
         this.username = username;
         this.password = password;
         this.enabled = enabled;
         this.userRole = userRole;
     }
 
+    @Id
+    @Column(name = "username")
     public String getUsername() {
         return this.username;
     }
@@ -40,6 +45,7 @@ public class User{
         this.username = username;
     }
 
+    @Column(name = "password")
     public String getPassword() {
         return this.password;
     }
@@ -48,6 +54,7 @@ public class User{
         this.password = password;
     }
 
+    @Column(name = "enabled", nullable = false)
     public boolean isEnabled() {
         return this.enabled;
     }
@@ -56,6 +63,7 @@ public class User{
         this.enabled = enabled;
     }
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     public Set<UserRole> getUserRole() {
         return this.userRole;
     }

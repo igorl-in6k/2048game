@@ -3,7 +3,6 @@ package game2048.web.dao;
 import java.util.List;
 
 import game2048.web.entity.User;
-import game2048.web.entity.UserRole;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 

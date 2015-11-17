@@ -43,5 +43,6 @@
   </form>
 </div>
 
+<a href="/"> home </a>
 </body>
 </html>
