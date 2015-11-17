@@ -11,18 +11,17 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @SessionAttributes(value = "gameField")
 @Scope("session")
-@RequestMapping(value = "/")
 public class PlayProcessController {
 
     private GameField gameField;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/game", method = RequestMethod.GET)
     public String getGamePage(ModelMap model) {
         model.addAttribute("gameField", gameField);
-        return "/gamepage";
+        return "gamepage";
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "/game", method = RequestMethod.POST)
     public @ResponseBody String  makeMove(@RequestParam("direction") String direction) {
         if ( gameField.move(Direction.getDirection(direction)) )
             gameField.fillRandomEmptyCell();
@@ -37,10 +36,10 @@ public class PlayProcessController {
         return field;
     }
 
-    @RequestMapping(value = "/newgame", method = RequestMethod.POST)
+    @RequestMapping(value = "/game/new", method = RequestMethod.POST)
     public String startNewGame() {
         createGameField();
-        return "redirect:/";
+        return "redirect:/game";
     }
 
     @ModelAttribute("gameField")

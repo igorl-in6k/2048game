@@ -17,7 +17,7 @@ document.addEventListener('keydown', function(event){
             direction = "no_direction";
     }
     $.ajax({
-        url: "/",
+        url: "/game",
         data: "direction=" + direction,
         type: "POST",
         async: true,

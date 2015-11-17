@@ -35,7 +35,7 @@
       </div>
       <%}%>
   </div>
-  <form method="post" action="/newgame" id="newgameform">
+  <form method="post" action="/game/new" id="newgameform">
     <input type="submit" value="New Game" id="newgamebutton">
   </form>
 </div>
