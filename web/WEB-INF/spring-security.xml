@@ -22,10 +22,14 @@
         <csrf />
     </http>
 
+    <beans:bean name="bcryptEncoder"
+                class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+
     <authentication-manager>
         <authentication-provider user-service-ref="myUserDetailsService" >
-            <password-encoder hash="bcrypt" />
+            <password-encoder ref="bcryptEncoder"/>
         </authentication-provider>
     </authentication-manager>
+
 
 </beans:beans>

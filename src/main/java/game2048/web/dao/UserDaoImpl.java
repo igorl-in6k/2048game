@@ -6,9 +6,11 @@ import game2048.web.entity.User;
 import org.hibernate.SessionFactory;
 
 import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class UserDaoImpl implements UserDao {
 
+    @Autowired
     private SessionFactory sessionFactory;
 
     @Override
@@ -37,5 +39,4 @@ public class UserDaoImpl implements UserDao {
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
-
 }
