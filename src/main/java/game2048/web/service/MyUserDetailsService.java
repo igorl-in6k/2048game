@@ -21,25 +21,11 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
-
-        // Programmatic transaction management
-		/*
-		return transactionTemplate.execute(new TransactionCallback<UserDetails>() {
-			public UserDetails doInTransaction(TransactionStatus status) {
-				com.mkyong.users.model.User user = userDao.findByUserName(username);
-				List<GrantedAuthority> authorities = buildUserAuthority(user.getUserRole());
-				return buildUserForAuthentication(user, authorities);
-			}
-		});*/
-
         game2048.web.entity.User user = userDao.findByUserName(username);
         List<GrantedAuthority> authorities = buildUserAuthority(user.getUserRole());
-
         return buildUserForAuthentication(user, authorities);
     }
 
-    // Converts com.mkyong.users.model.User user to
-    // org.springframework.security.core.userdetails.User
     private User buildUserForAuthentication(game2048.web.entity.User user,
                                             List<GrantedAuthority> authorities) {
         return new User(user.getUsername(), user.getPassword(), user.isEnabled(),
@@ -47,17 +33,12 @@ public class MyUserDetailsService implements UserDetailsService {
     }
 
     private List<GrantedAuthority> buildUserAuthority(Set<UserRole> userRoles) {
-
-        Set<GrantedAuthority> setAuths = new HashSet<GrantedAuthority>();
-
+        Set<GrantedAuthority> setAuths = new HashSet<>();
         // Build user's authorities
         for (UserRole userRole : userRoles) {
             setAuths.add(new SimpleGrantedAuthority(userRole.getRole()));
         }
-
-        List<GrantedAuthority> Result = new ArrayList<GrantedAuthority>(setAuths);
-
-        return Result;
+        return new ArrayList<>(setAuths);
     }
 
     public UserDao getUserDao() {

@@ -8,7 +8,7 @@ public class User{
     private String username;
     private String password;
     private boolean enabled;
-    private Set<UserRole> userRole = new HashSet<UserRole>(0);
+    private Set<UserRole> userRole = new HashSet<>(0);
 
     public User() {
     }
@@ -17,6 +17,12 @@ public class User{
         this.username = username;
         this.password = password;
         this.enabled = enabled;
+    }
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+        enabled = true;
     }
 
     public User(String username, String password, boolean enabled, Set<UserRole> userRole) {

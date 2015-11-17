@@ -25,8 +25,7 @@
             href="javascript:formSubmit()"> Logout</a>
     </h2>
   </c:if>
-
-
 </sec:authorize>
+
 </body>
 </html>

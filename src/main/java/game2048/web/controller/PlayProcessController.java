@@ -60,8 +60,13 @@ public class PlayProcessController {
         return gameField;
     }
 
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String getMainPage() {
+        return "main";
+    }
+
     // --------------------------------------------
-    @RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
+    @RequestMapping(value = "/welcome**", method = RequestMethod.GET)
     public ModelAndView defaultPage() {
 
         ModelAndView model = new ModelAndView();
