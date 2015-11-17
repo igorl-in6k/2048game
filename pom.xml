@@ -12,6 +12,7 @@
         <spring-framework.version>4.2.2.RELEASE</spring-framework.version>
         <spring.security.version>4.0.3.RELEASE</spring.security.version>
         <hibernate.version>5.0.3.Final</hibernate.version>
+        <dbcp.version>1.4</dbcp.version>
     </properties>
 
     <build>
@@ -117,6 +118,12 @@
             <version>5.1.37</version>
         </dependency>
 
+        <!-- database pool -->
+        <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>${dbcp.version}</version>
+        </dependency>
 
     </dependencies>
 
