@@ -31,6 +31,10 @@
         </property>
     </bean>
 
+    <bean id="userService" class="game2048.web.service.UserService">
+        <constructor-arg ref="userDao" />
+    </bean>
+
     <bean id="userDao" class="game2048.web.dao.UserDaoImpl">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>

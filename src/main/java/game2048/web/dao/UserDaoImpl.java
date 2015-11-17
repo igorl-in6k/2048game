@@ -3,6 +3,7 @@ package game2048.web.dao;
 import java.util.List;
 
 import game2048.web.entity.User;
+import game2048.web.entity.UserRole;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -25,6 +26,13 @@ public class UserDaoImpl implements UserDao {
         if (users.size() > 0)
             return users.get(0);
         return null;
+    }
+
+    @Override
+    public void addUser(User user) {
+        getSession().save(user);
+        UserRole role = new UserRole(user, "ROLE_USER");
+        getSession().save(role);
     }
 
     public Session getSession() {

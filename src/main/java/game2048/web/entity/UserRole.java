@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "user_roles")
 public class UserRole{
@@ -56,5 +57,4 @@ public class UserRole{
     public void setRole(String role) {
         this.role = role;
     }
-
 }
